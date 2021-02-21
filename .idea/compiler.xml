@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="serverprovider" />
+        <module name="zuul" />
+        <module name="serverconsumerribbon" />
+        <module name="serverhystrixconsumer" />
+        <module name="configclientprovider" />
+        <module name="serverhystrixprovider" />
+        <module name="serverprovider2" />
+        <module name="serverconsumer" />
+        <module name="serverconsumerfegin" />
+        <module name="eurekaserver" />
+        <module name="config" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springcloud" options="" />
+    </option>
+  </component>
+</project>
