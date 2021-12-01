@@ -1,0 +1,24 @@
+server:
+  port: 1399
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: CONFIG-SERVER
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://192.168.70.177:5432/abspldb
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/nahaizi/springcloud.git  #git文件地址
+          username: 371490890@qq.com  		         #Github账号
+          password: bupaoren9421						 #GitHub账号密码-pull=true
+          force-pull: true

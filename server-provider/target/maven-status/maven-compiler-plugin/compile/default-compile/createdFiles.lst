@@ -1,0 +1,16 @@
+com\lili\provider\entity\process\ResponseParam.class
+com\lili\provider\Application_Provider.class
+com\lili\provider\controller\ProcessinstanceController.class
+com\lili\provider\service\ProcessinstanceService.class
+com\lili\provider\entity\Processinstance.class
+com\lili\provider\entity\process\PortResult.class
+test\TestAutoGenerate.class
+com\lili\provider\SwaggerConfig.class
+com\lili\provider\service\impl\ProcessinstanceServiceImpl.class
+com\lili\provider\entity\process\RequestParam.class
+com\lili\provider\entity\process\Processtaskdeatil.class
+com\lili\provider\entity\Processpermissionsrc.class
+com\lili\provider\mapper\ProcessinstanceMapper.class
+com\lili\provider\entity\process\Backprocessnode.class
+com\lili\provider\entity\Param.class
+com\lili\provider\controller\ProviderController.class

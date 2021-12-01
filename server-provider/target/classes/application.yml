@@ -1,0 +1,32 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: TEST-PROVIDER   #服务名称，随意取
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        master:
+          driver-class-name: org.postgresql.Driver
+          username: postgres
+          password: postgres
+          url: jdbc:postgresql://192.168.60.2:5432/youchuperf
+        mysql_1:
+          driver-class-name: com.mysql.jdbc.Driver
+          username: javaweb
+          password: javaweb
+          url: jdbc:mysql://localhost:3306/javaweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka #注册到Eureka的地址
+    register-with-eureka: false #禁止自己当做服务注册
+    fetch-registry: false       #屏蔽注册信息
+mybatis-plus:
+  #config-location: classpath:mybatis/mybatis.cfg.xml #mybatis 配置文件路径
+  type-aliases-package: com.lili.provider.entity # entity别名类所在包
+  mapper-locations: com/lili/provider/mapper/*/*.xml    # mapper映射文件
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
