@@ -32,5 +32,6 @@ public interface ProcessinstanceMapper extends BaseMapper<Processinstance> {
 
     List<Map> getbatchlist(@Param("currentPage")Integer currentPage ,@Param("pageSize") Integer pageSize);
     int savebatchlist(Map map);
+    int savelog(List<Map> maplist);
     int deletebatch(Map map);
 }

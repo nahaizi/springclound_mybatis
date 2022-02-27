@@ -26,4 +26,5 @@ public interface ProcessinstanceService extends IService<Processinstance> {
     List<Map> getbatchlist(Integer currentPage , Integer pageSize);
 
     void savebatchlist(Map map);
+    void savelog(List<Map> maplist);
 }

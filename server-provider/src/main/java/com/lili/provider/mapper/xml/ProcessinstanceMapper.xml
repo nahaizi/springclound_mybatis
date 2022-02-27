@@ -86,4 +86,19 @@
     <insert id="deletebatch" parameterType="string">
         delete from batchexcinfo where jobcode = #{jobcode ,jdbcType=VARCHAR}
     </insert>
+
+
+
+    <insert id="savelog"  >
+
+        insert into batchlog(
+            dealdatestr,content,dealdate,times
+            )
+
+        VALUES
+        <foreach collection ="list" item="list" index="index" separator =",">
+            (#{list.dealdatestr ,jdbcType=VARCHAR}, #{list.content ,jdbcType=VARCHAR},#{list.dealdate,jdbcType=TIMESTAMP },#{list.times})
+        </foreach >
+
+    </insert>
 </mapper>

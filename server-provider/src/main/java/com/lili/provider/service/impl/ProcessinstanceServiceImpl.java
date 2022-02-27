@@ -71,5 +71,9 @@ public class ProcessinstanceServiceImpl extends ServiceImpl<ProcessinstanceMappe
         parammap.put("value",value);
         processinstancemapper.savebatchlist(parammap);
     }
+    @DS("mysql_1")
+    public void savelog(List<Map> maplist){
 
+        processinstancemapper.savelog(maplist);
+    }
 }
