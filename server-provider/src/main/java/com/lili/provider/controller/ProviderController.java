@@ -27,7 +27,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -236,9 +239,12 @@ public class ProviderController {
     Object responseobj;
     Object obj = JSONArray.toJSON(requestparam);
 
+    ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    HttpServletRequest request = servletRequestAttributes.getRequest();
+    String ip =  getIpAddr(request);
     logger.info("发送流程请求参数{}" + obj.toString());
 
-    String url = "http://localhost:8080/yc/sendtask";
+    String url = "http://"+ ip +":8114/youchubank/sendtask";
     ResponseParam responseparam = new ResponseParam();
 
     Date nowdate = new Date();
@@ -400,5 +406,35 @@ public class ProviderController {
     logger.info("ProviderController--撤销流程数据{}", responseobj);
 
     return responseobj;
+  }
+
+  //其中ip的获取方式
+  public  String getIpAddr(HttpServletRequest request) {
+
+    String ip = request.getHeader("x-forwarded-for");
+
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("X-Real-IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("http_client_ip");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getRemoteAddr();
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("Proxy-Client-IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("WL-Proxy-Client-IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+    }
+    // 如果是多级代理，那么取第一个ip为客户ip
+    if (ip != null && ip.indexOf(",") != -1) {
+      ip = ip.substring(ip.lastIndexOf(",") + 1, ip.length()).trim();
+    }
+    return ip;
   }
 }
