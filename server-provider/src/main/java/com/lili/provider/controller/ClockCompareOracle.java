@@ -26,10 +26,10 @@ import java.util.Date;
  * @return $
  * @throws
  * @date $ $
- * ===========================================
- * 修改人：lijunyu，    修改时间：$ $，    修改版本：
- * 修改备注：
- * ===========================================
+ *       ===========================================
+ *       修改人：lijunyu， 修改时间：$ $， 修改版本：
+ *       修改备注：
+ *       ===========================================
  */
 @Api(description = "数据库比较")
 @RestController
@@ -40,26 +40,25 @@ public class ClockCompareOracle {
     @Autowired
     private CompareDbService comparedbservice;
 
-    @ApiOperation("开启流程")
     @ApiImplicitParam("RequestParam参数：BusiData")
     @PostMapping("insertdata")
     public Object insertdata(@RequestBody String url) {
 
-        //根据传入的数据文件路径进行大批量数据的接入
+        // 根据传入的数据文件路径进行大批量数据的接入
         Date vdate = new Date();
-        logger.info("date: {0} 开始将{1}插入oracle数据库！",vdate,url);
+        logger.info("date: {0} 开始将{1}插入oracle数据库！", vdate, url);
         comparedbservice.insertOracle(url);
         Date mdate = new Date();
-        logger.info("date: {0} 完成将{1}插入oracle数据库！",mdate,url);
-        long second = (mdate.getTime() - vdate.getTime())/1000;
-        logger.info("共耗时：{0}秒,{1}分",second,second/60);
+        logger.info("date: {0} 完成将{1}插入oracle数据库！", mdate, url);
+        long second = (mdate.getTime() - vdate.getTime()) / 1000;
+        logger.info("共耗时：{0}秒,{1}分", second, second / 60);
         vdate = new Date();
-        logger.info("date: {0} 开始将{1}插入Clickhouse数据库！",vdate,url);
+        logger.info("date: {0} 开始将{1}插入Clickhouse数据库！", vdate, url);
         comparedbservice.insertClickhouse(url);
         mdate = new Date();
-        logger.info("date: {0} 完成将{1}插入Clickhouse数据库！",mdate,url);
-        second = (mdate.getTime() - vdate.getTime())/1000;
-        logger.info("共耗时：{0}秒,{1}分",second,second/60);
+        logger.info("date: {0} 完成将{1}插入Clickhouse数据库！", mdate, url);
+        second = (mdate.getTime() - vdate.getTime()) / 1000;
+        logger.info("共耗时：{0}秒,{1}分", second, second / 60);
 
         ResponseParam responseparam = new ResponseParam();
         responseparam.setPipRespCode("000000"); // 响应码

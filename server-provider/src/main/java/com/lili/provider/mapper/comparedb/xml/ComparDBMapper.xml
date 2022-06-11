@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lili.provider.mapper.comparedb.ComparDBMapper">
+<!--抽取sql-->
+  <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, SCENE_ID, GEAR_ID, GEAR_NAME, PARAM_CODE,PARAM_NAME,VARIATION_NUMBER,VARIATION_STEP, EFFECT_FLAG, CREATE_USER, CREATE_TIME, UPDATE_USER, UPDATE_TIME
+    </sql>
+
+ <insert id="insertOracle" parameterType="java.util.List">
+        INSERT INTO ABS_VARIABLE_SCENE_PARAMETER (
+            <include refid="Base_Column_List" />
+            )
+        <foreach collection="list" item="item" index="index" separator=" UNION ALL ">
+            SELECT #{item.id,jdbcType=VARCHAR}, #{item.sceneId,jdbcType=VARCHAR}, #{item.gearId,jdbcType=VARCHAR}, 
+            #{item.gearName,jdbcType=VARCHAR}, #{item.paramCode,jdbcType=VARCHAR}, #{item.paramName,jdbcType=VARCHAR}, 
+            #{item.variationNumber,jdbcType=DECIMAL}, #{item.variationStep,jdbcType=DECIMAL}, #{item.effectFlag,jdbcType=VARCHAR}, #{item.createUser,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+            #{item.updateUser,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP}
+
+        </foreach>
+    </insert>
+     <insert id="insertClickhouse" parameterType="java.util.List">
+        INSERT INTO ABS_VARIABLE_SCENE_PARAMETER (
+            <include refid="Base_Column_List" />
+            )
+        <foreach collection="list" item="item" index="index" separator=" UNION ALL ">
+            SELECT #{item.id,jdbcType=VARCHAR}, #{item.sceneId,jdbcType=VARCHAR}, #{item.gearId,jdbcType=VARCHAR}, 
+            #{item.gearName,jdbcType=VARCHAR}, #{item.paramCode,jdbcType=VARCHAR}, #{item.paramName,jdbcType=VARCHAR}, 
+            #{item.variationNumber,jdbcType=DECIMAL}, #{item.variationStep,jdbcType=DECIMAL}, #{item.effectFlag,jdbcType=VARCHAR}, #{item.createUser,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+            #{item.updateUser,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+    </insert>
 </mapper>
