@@ -20,6 +20,7 @@
         <module>server-consumer-ribbon</module>
         <module>server-hystrix-provider</module>
         <module>server-hystrix-consumer</module>
+        <module>getway</module>
     </modules>
 
     <name>springcloud</name>
@@ -29,8 +30,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>2022.0.2</spring-cloud.version>
-        <springboot.version>3.0.5</springboot.version>
+        <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <springboot.version>2.6.8</springboot.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -54,6 +55,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.13.2</version>
+            </dependency>
+            <!-- mybatisPlus 核心库 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

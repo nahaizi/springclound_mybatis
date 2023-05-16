@@ -5,6 +5,11 @@ spring:
       label: master 				#分支
       name: application 			#github上面名称
       profile: dev 					#环境
+  application:
+    name: TEST-CONFIG-PROVIDER   #服务名称
+  config:
+    import: CONFIG-SERVER:1299
+      #classpath: default/default.properties # 导入classpath下default目录下的default.properties配置文件
 eureka:
   client:
     service-url:

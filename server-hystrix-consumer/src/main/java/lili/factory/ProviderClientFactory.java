@@ -1,7 +1,7 @@
 package lili.factory;
 
-import feign.hystrix.FallbackFactory;
 import lili.client.ProviderClient;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 /**

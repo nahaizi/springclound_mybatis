@@ -3,7 +3,50 @@ server:
 spring:
   application:
     name: TEST-HYSTRIX-PROVIDER   #服务名称
+  kafka:
+    bootstrap-servers: 172.19.0.1:9093
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: TEST_GROUP
+      # 如果为true，则消费者的偏移量将在后台定期提交，为false，spring也会帮我们进行人工提交
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:7001/eureka #注册到Eureka的地址
+rabbitmq:
+  host: localhost
+  username: liyanbo
+  password: liyanbo
+  #开启发送确认机制，将来消息到达交换机以后有一个回调
+  publisher-confirm-type: correlated
+  #消息到达消息队列回调（如果消息没有成功到达队列，会触发回调方法）
+  publisher-returns: true
+  template:
+    retry:
+      enabled: true  # 开启重发机制
+      initial-interval: 1000ms #间隔 1秒
+      max-attempts: 6    #最多发6次
+      multiplier: 1.2 #每次间隔 时间*1.2
+      max-interval: 10000ms  #每次最大间隔时间
+  port: 5672
+  listener:
+    simple:
+      acknowledge-mode: manual # none 自动模式（默认开启）;manual  手动模式; auto 自动模式 （根据侦听器检测是正常返回、还是抛出异常来发出 ack/nack）
+mybatis-plus:
+  mapper_locations: classpath*:sqlmapper/*.xml,classpath*:sqlmapper/*/*.xml,classpath*:sqlmapper/*/*/*.xml,classpath*:sqlmapper/*/*/*/*.xml
+  check-config-location: true                         # 检查xml文件是否存在
+  configuration:
+    map-underscore-to-camel-case: true                # 开启驼峰命名法
+    cache-enabled: false
+    # 配置列空值类型 JdbcTypeForNull, oracle数据库必须配置。注意单引号，默认为other
+    jdbc-type-for-null: 'null'
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.joyintech.*.entity.*   # 实体类存放位置
+
+

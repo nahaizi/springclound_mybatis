@@ -1,0 +1,13 @@
+server:
+  port: 80
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      enabled: true #\u53EA\u8981\u52A0\u4E86gateway\u4F9D\u8D56\uFF0C\u9ED8\u8BA4\u5F00\u542F
+      routes:
+        -      id: login-server-route #\u8FD9\u4E2A\u662F\u8DEF\u7531\u7684id\uFF0C\u8981\u4FDD\u6301\u552F\u4E00\u6027
+               uri: http://localhost:8081 #uri:\u7EDF\u4E00\u8D44\u6E90\u5B9A\u4F4D\u7B26   url:\u7EDF\u4E00\u8D44\u6E90\u6807\u8BC6\u7B26
+               predicates:
+                 - Path=/doLogin #\u914D\u7F6E\u89C4\u5219 \u53EA\u8981path\u5339\u914D\u4E0A\u4E86/doLogin\u5C31\u5F80uri\u4E2D\u8F6C\u53D1 \u5E76\u4E14\u5C06\u8DEF\u5F84\u5E26\u4E0A
