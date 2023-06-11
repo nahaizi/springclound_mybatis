@@ -1,0 +1,11 @@
+spring:
+  mybatis-plus:
+    mapper_locations: classpath*:sqlmapper/*.xml,classpath*:sqlmapper/*/*.xml,classpath*:sqlmapper/*/*/*.xml,classpath*:sqlmapper/*/*/*/*.xml
+    check-config-location: true                         # 检查xml文件是否存在
+    configuration:
+      map-underscore-to-camel-case: true                # 开启驼峰命名法
+      cache-enabled: false
+      # 配置列空值类型 JdbcTypeForNull, oracle数据库必须配置。注意单引号，默认为other
+      jdbc-type-for-null: 'null'
+      #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    type-aliases-package: com.joyintech.*.entity.*   # 实体类存放位置

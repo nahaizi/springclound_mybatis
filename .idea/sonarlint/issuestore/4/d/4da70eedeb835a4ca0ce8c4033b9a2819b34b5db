@@ -1,0 +1,29 @@
+
+x
+java:S1488<"]Immediately return this expression instead of assigning it to the temporary variable "jedis".(È‡ˆüÿÿÿÿ
+e
+java:S3008
+"ORename this field "ADDR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤”ÀÀ
+e
+java:S3008"ORename this field "PORT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õ¹ïŞ
+j
+java:S3008"ORename this field "AUTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÀ±«øÿÿÿÿ
+j
+java:S3008"TRename this field "MAX_TOTAL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰³€Ò
+n
+java:S3008"SRename this field "MAX_IDLE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹¤ÿ›ÿÿÿÿÿ
+u
+java:S3008"ZRename this field "MAX_WAIT_MILLIS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÙ›Ñıÿÿÿÿ
+m
+java:S3008"RRename this field "TIMEOUT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÄšêÿÿÿÿÿ
+t
+java:S3008"YRename this field "TEST_ON_BORROW" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öíÒàøÿÿÿÿ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(ªäş¡ıÿÿÿÿ
+S
+java:S1874,"8Remove this use of "setMaxWaitMillis"; it is deprecated.(îöÑ˜ÿÿÿÿÿ
+[
+java:S11249"EReorder the modifiers to comply with the Java Language Specification.(òñ¸¼
+V	java:S125L"<This block of commented-out lines of code should be removed.(®ö‚®üÿÿÿÿ
+C
+java:S1068"(Remove this unused "AUTH" private field.(ĞÀ±«øÿÿÿÿ

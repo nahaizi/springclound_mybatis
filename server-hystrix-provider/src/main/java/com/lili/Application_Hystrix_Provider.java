@@ -2,6 +2,7 @@ package com.lili;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @param
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 修改备注：
  * ===========================================
  */
+@EnableDiscoveryClient // 启用服务发现
 @SpringBootApplication
 public class Application_Hystrix_Provider {
     public static void main(String[] args) {

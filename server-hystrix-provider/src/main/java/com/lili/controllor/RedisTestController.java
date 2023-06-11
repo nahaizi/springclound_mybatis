@@ -32,7 +32,7 @@ public class RedisTestController {
                 System.out.println("cause2 = " + cause);
             }
         });
-        rabbitTemplate.convertAndSend(RabbitConfirmConfig.EXCHANGE_CONFIRM_NAME, RabbitConfirmConfig.CONFIRM_ROUTING_KEY, "message confirm ......");
+        rabbitTemplate.convertAndSend(RabbitConfirmConfig.EXCHANGE_CONFIRM_NAME, RabbitConfirmConfig.CONFIRM_ROUTING_KEY_A, "message confirm ......");
 
         return num + "==SUCCEED";
     }

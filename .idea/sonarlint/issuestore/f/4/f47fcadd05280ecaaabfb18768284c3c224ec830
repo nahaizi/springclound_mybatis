@@ -1,0 +1,8 @@
+
+U	java:S106	"9Replace this use of System.out or System.err by a logger.(Ãèº¿8¡ëü×1
+J
+java:S1172"(Remove this unused method parameter "i".(â¶çıÿÿÿÿ8¡ëü×1
+T	java:S106"9Replace this use of System.out or System.err by a logger.(ËŸµ8¢ëü×1
+J
+java:S1172"(Remove this unused method parameter "i".(µ“û¨ùÿÿÿÿ8¢ëü×1
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ŒÄöøÿÿÿÿ8¢ëü×1

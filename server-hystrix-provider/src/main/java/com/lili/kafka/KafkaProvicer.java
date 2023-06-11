@@ -12,7 +12,7 @@ public class KafkaProvicer implements Runnable {
 
     private static final String TOPIC = "TEST_TOPIC_LILI";
 
-    private static final String BROKER_LIST = "localhost:9092";
+    private static final String BROKER_LIST = "localhost:9092,localhost:9093,localhost:9094,localhost:9095";
 
     /**
      * 消息发送确认
@@ -56,7 +56,7 @@ public class KafkaProvicer implements Runnable {
                         System.out.println("消息发送成功：" + recordMetadata.partition() + "-" + recordMetadata.offset());
                     }
                 });
-                Thread.sleep(50000L);
+                Thread.sleep(5000L);
             }
         } catch (Exception e) {
             e.printStackTrace();

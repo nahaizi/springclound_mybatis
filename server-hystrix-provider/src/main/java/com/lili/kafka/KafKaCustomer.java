@@ -93,8 +93,9 @@ public class KafKaCustomer implements Runnable {
         ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1L));
         records.forEach(record -> {
             System.out.println(clientId + "-消费消息："  + record.toString());
+            consumer.commitSync(); // manually commit
         });
-        consumer.commitSync(); // manually commit offsets
+
     }
 
     @Override
@@ -102,7 +103,7 @@ public class KafKaCustomer implements Runnable {
         try {
             while (true) {
                 consume();
-                Thread.sleep(50000L);
+                Thread.sleep(5000L);
             }
         } catch (Exception e) {
             e.printStackTrace();

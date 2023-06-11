@@ -1,7 +1,5 @@
 package com.lili;
 
-import com.netflix.loadbalancer.IRule;
-import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -36,9 +34,9 @@ public class Application_Ribbon {
 
 
     //修改默认的负载均衡策略
-    @Bean
+   /* @Bean
     public IRule myRule() {
         //随机策略
         return new RandomRule();
-    }
+    }*/
 }

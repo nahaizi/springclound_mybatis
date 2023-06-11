@@ -1,0 +1,15 @@
+spring:
+  cloud: # nacos此处开启需要关闭下面的eurka
+    nacos:
+      config:
+        namespace: fe693ed2-e126-4986-945e-615755ecc0bd
+        server-addr: 192.168.30.168:8848
+        file-extension: yaml
+        username: nacos
+        password: nacos
+        group: DEFAULT_GROUP_DEV
+      discovery:
+        namespace: fe693ed2-e126-4986-945e-615755ecc0bd
+        server-addr: 192.168.30.168:8848
+        username: nacos
+        password: nacos

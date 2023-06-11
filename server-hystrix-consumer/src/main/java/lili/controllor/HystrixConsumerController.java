@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("consumer")
 public class HystrixConsumerController {
 
-    @Autowired
+    @Autowired(required = false)
     private ProviderClient providerClient;
 
     @GetMapping("get/{num}")

@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    host: 192.168.30.168
+    username: test
+    password: test
+    #开启发送确认机制，将来消息到达交换机以后有一个回调
+    publisher-confirm-type: correlated
+    #消息到达消息队列回调（如果消息没有成功到达队列，会触发回调方法）
+    publisher-returns: true
+    template:
+      retry:
+        enabled: true  # 开启重发机制
+        initial-interval: 1000ms #间隔 1秒
+        max-attempts: 6    #最多发6次
+        multiplier: 1.2  #每次间隔 时间*1.2
+        max-interval: 10000ms  #每次最大间隔时间
+    port: 5673
+    listener:
+      simple:
+        acknowledge-mode: manual # none 自动模式（默认开启）;manual  手动模式; auto 自动模式 （根据侦听器检测是正常返回、还是抛出异常来发出 ack/nack）

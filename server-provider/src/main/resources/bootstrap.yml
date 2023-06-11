@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: TEST-PROVIDER
+  cloud:
+    nacos:
+      config:
+        namespace: fe693ed2-e126-4986-945e-615755ecc0bd
+        server-addr: 192.168.30.168:8848
+        file-extension: yaml
+        username: nacos
+        password: nacos
+        group: DEFAULT_GROUP_DEV
+      discovery:
+        namespace: fe693ed2-e126-4986-945e-615755ecc0bd
+        server-addr: 192.168.30.168:8848
+        username: nacos
+        password: nacos
+    # 网关配置在nacos中配置
+   # gateway:
+   #   enabled: true
+   #   discovery: # 开启自动
+   #     locator:
+   #       enabled: true #是否与服务注册于发现组件结合，通过 serviceId 转发到具体的服务
+   #       lowerCaseServiceId: true # 请求服务是小写的时候改成true（默认为false轻微服务必须是大写）
+
+# 动态路由配置
+#route:
+#  dynamic:
+#    enabled: true
+#    namespace:
+#    dataId: gateway_route
+#    group: DEFAULT_GROUP
+
+

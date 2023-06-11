@@ -1,7 +1,7 @@
 package lili.factory;
 
 import lili.client.ProviderClient;
-import org.springframework.cloud.openfeign.FallbackFactory;
+//import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * ===========================================
  */
 @Component
-public class ProviderClientFactory implements FallbackFactory<ProviderClient> {
+public class ProviderClientFactory /*implements FallbackFactory<ProviderClient>*/ {
 
     public ProviderClient create(Throwable cause) {
         return new ProviderClient() {

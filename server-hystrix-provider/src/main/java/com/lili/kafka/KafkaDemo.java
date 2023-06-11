@@ -3,9 +3,9 @@ package com.lili.kafka;
 public class KafkaDemo {
     public static void main(String[] args) {
         // 启动生产者，发送两条消息
-       /* Thread e = new Thread(new KafkaProvicer());
+        Thread e = new Thread(new KafkaProvicer());
         e.setName("start---");
-        e.start();*/
+        e.start();
         // A、B都在消费者组A下，故消息要么被A消费，要么被B消费
         // 启动消费者A
         Thread e1 = new Thread(new KafKaCustomer(KafKaCustomer.GROUP_ID_A, KafKaCustomer.CLIENT_ID_A));
