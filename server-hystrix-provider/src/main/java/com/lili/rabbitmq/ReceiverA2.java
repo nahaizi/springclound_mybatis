@@ -12,12 +12,12 @@ import java.io.IOException;
 
 @Component
 @RabbitListener(queues = RabbitConfirmConfig.QUEUE_CONFIRM_NAME)
-public class ReceiverA extends BaseReceiver {
+public class ReceiverA2 extends BaseReceiver {
 
     @Override
     @RabbitHandler
     public void process(String hello, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
-        System.out.println("A-1Receiver  : " + hello + "/n");
+        System.out.println("A-2Receiver  : " + hello + "/n");
         manulAck(channel,deliveryTag);
     }
 }
