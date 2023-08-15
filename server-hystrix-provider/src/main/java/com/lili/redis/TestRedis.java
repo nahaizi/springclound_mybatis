@@ -20,7 +20,7 @@ public class TestRedis {
     @Before
     public void setJedis() {
         //连接redis服务器(在这里是连接本地的)
-        jedis = new Jedis("localhost", 6379, 100);
+        jedis = new Jedis("localhost", 6360, 100);
         //权限认证
 
 //        jedis.auth("chenhaoxiang");

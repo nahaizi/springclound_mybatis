@@ -21,6 +21,7 @@
         <module>server-hystrix-provider</module>
         <module>server-hystrix-consumer</module>
         <module>getway</module>
+        <module>es-sevice</module>
     </modules>
 
     <name>springcloud</name>

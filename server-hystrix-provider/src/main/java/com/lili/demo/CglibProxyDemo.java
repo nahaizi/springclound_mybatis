@@ -26,23 +26,23 @@ public class CglibProxyDemo {
         //methodProxy :  方法代理【采用这个参数，可以避免使用方法反射进行调用，但是内部未使用反射】
         Target proxy = (Target) Enhancer.create(Target.class, (MethodInterceptor) (o, method, args1, methodProxy) -> {
 
-           /* System.out.println("before");
+            System.out.println("before");
             // 基于反射实现；
             Object result = method.invoke(target, args);
             System.out.println("after");
-            return result;*/
+//            return result;
 
             //methodProxy 使用 ，使用目标进行代理
-            /*System.out.println("before");
+            System.out.println("before");
             // 直接调用目标类的方法；
-            Object result = methodProxy.invoke(target,args);
+             result = methodProxy.invoke(target,args);
             System.out.println("after");
-            return result;*/
+//            return result;
 
             //methodProxy 使用 ，使用自身进行代理
             System.out.println("before");
             // 直接调用目标类的方法；
-            Object result = methodProxy.invokeSuper(o, args1);
+             result = methodProxy.invokeSuper(o, args1);
             System.out.println("after");
             return result;
 

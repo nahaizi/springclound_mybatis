@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019. 兆尹科技
+  -->
+
+<!--监控间隔单位：秒，最小5秒-->
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <!--日志目录-->
+        <Property name="LOG_HOME">${sys:abs.log.home:-/home/abs/logs}</Property>
+        <!--模块名-->
+        <Property name="MODULE_NAME">${sys:abs.module.name:-assetpool}</Property>
+    </Properties>
+    <Appenders>
+
+        <!--控制台-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %X{TRACE_ID} [%thread] %class - %message%n"/>
+        </Console>
+
+        <!--debug、info 日志-->
+        <RollingRandomAccessFile name="infoLog" fileName="${LOG_HOME}/${MODULE_NAME}/info.log"
+                                 filePattern="${LOG_HOME}/${MODULE_NAME}/info.%d{yyyy-MM-dd}.%i.log.gz">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %X{TRACE_ID} [%thread] %class - %message%n"/>
+            <Filters>
+                <!--log4j2的8个日志级别：all<trace<debug<info<warn<error<fatal<off-->
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <!--输出debug、info日志-->
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <!--按天切换-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!--按大小切换-->
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <!--最多保留100个-->
+            <DefaultRolloverStrategy max="100"/>
+        </RollingRandomAccessFile>
+
+        <!--警告日志-->
+        <RollingRandomAccessFile name="warnLog" fileName="${LOG_HOME}/${MODULE_NAME}/warn.log"
+                                 filePattern="${LOG_HOME}/${MODULE_NAME}/warn.%d{yyyy-MM-dd}.%i.log.gz">
+            <Filters>
+                <!--输出warning日志-->
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %X{TRACE_ID} [%thread] %class - %message%n"/>
+            <Policies>
+                <!--按天切换-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!--按大小切换-->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!--最多保留100个-->
+            <DefaultRolloverStrategy max="100"/>
+        </RollingRandomAccessFile>
+
+        <!--错误日志-->
+        <RollingRandomAccessFile name="errorLog" fileName="${LOG_HOME}/${MODULE_NAME}/error.log"
+                                 filePattern="${LOG_HOME}/${MODULE_NAME}/error.%d{yyyy-MM-dd}.%i.log.gz">
+            <Filters>
+                <!--输出error+日志-->
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %X{TRACE_ID} [%thread] %class - %message%n"/>
+            <Policies>
+                <!--按天切换-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!--按大小切换-->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!--最多保留100个-->
+            <DefaultRolloverStrategy max="100"/>
+        </RollingRandomAccessFile>
+
+        <!--druid的日志记录追加器-->
+        <RollingRandomAccessFile name="druidSqlRollingFile" fileName="${LOG_HOME}/${MODULE_NAME}/druid-sql.log"
+                                 filePattern="${LOG_HOME}/${MODULE_NAME}/druid-sql.%d{yyyy-MM-dd}.%i.log.gz">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %X{TRACE_ID} %thread %class - %message%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!--记录druid-sql的记录-->
+        <logger name="druid.sql.Statement" level="debug" additivity="true">
+            <appender-ref ref="druidSqlRollingFile"/>
+        </logger>
+        <logger name="org.springframework.boot.autoconfigure" level="warn" additivity="false">
+        </logger>
+        <!-- includeLocation 控制是否打印location信息，如file、class、method、line number等信息 -->
+        <Root level="debug" includeLocation="true">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="infoLog"/>
+            <appender-ref ref="warnLog"/>
+            <appender-ref ref="errorLog"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
